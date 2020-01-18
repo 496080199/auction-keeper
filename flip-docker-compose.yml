@@ -1,0 +1,12 @@
+version: '3.3'
+services:
+  auction-keeper:
+    image: 496080199/auction-keeper
+    container_name: auction-keeper
+    restart: always
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /data/auction-keeper:/keeper/data
+    environment:
+      - TZ=Asia/Shanghai
+    command: --rpc-host http://192.168.1.200 --rpc-timeout 600 --eth-from 0x************ --eth-key 'key_file=/keeper/data/user/UTC--******,pass_file=/keeper/data/user/pass' --type flip --ilk ETH-A --from-block 0 --vat-dai-target 100 --keep-dai-in-vat-on-exit --model /keeper/data/model/model-eth.sh
